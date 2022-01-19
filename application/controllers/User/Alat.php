@@ -1,0 +1,18 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Alat extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        belumlogin();
+    }
+    public function index()
+    {
+        $data['Pengguna'] = $this->db->get_where('pengguna', ['id_pengguna' =>
+        $this->session->userdata('id_pengguna')])->row_array();
+        $data['alat'] = $this->db->query('SELECT * FROM alat')->result_array();
+        $this->load->view('user/alat/index', $data);
+    }
+}
